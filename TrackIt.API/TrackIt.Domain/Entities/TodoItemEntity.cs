@@ -20,7 +20,7 @@ namespace TrackIt.Domain.Entities
         [Required]
         public PriorityEnum Priority { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         public bool IsDone { get; set; } = false;
     }

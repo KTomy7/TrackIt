@@ -36,8 +36,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-await DbInitializer.SeedDbAsync(app.Services);
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -46,6 +44,9 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TrackIt API V1");
     });
+
+    // Seed Db
+    await DbInitializer.SeedDbAsync(app.Services);
 }
 
 app.UseHttpsRedirection();

@@ -24,7 +24,7 @@ namespace TrackIt.Infrastructure.Repositories
 
         public async Task CreateTodoItemAsync(TodoItemEntity todoItemEntity)
         {
-            _dbContext.Add(todoItemEntity);
+            await _dbContext.AddAsync(todoItemEntity);
             await _dbContext.SaveChangesAsync();
         }
 
