@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIt.Domain", "TrackIt.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIt.Infrastructure", "TrackIt.Infrastructure\TrackIt.Infrastructure.csproj", "{DF9FB55A-EDDF-4C0F-B298-7534732C8459}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackIt.Tests", "TrackIt.Tests\TrackIt.Tests.csproj", "{DFEA7A28-A67A-4A22-9F98-893676FFD74E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DF9FB55A-EDDF-4C0F-B298-7534732C8459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9FB55A-EDDF-4C0F-B298-7534732C8459}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9FB55A-EDDF-4C0F-B298-7534732C8459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFEA7A28-A67A-4A22-9F98-893676FFD74E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFEA7A28-A67A-4A22-9F98-893676FFD74E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFEA7A28-A67A-4A22-9F98-893676FFD74E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFEA7A28-A67A-4A22-9F98-893676FFD74E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
