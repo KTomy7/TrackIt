@@ -18,6 +18,9 @@ namespace TrackIt.Infrastructure.DataAccess
             modelBuilder.Entity<TodoItemEntity>()
                         .HasIndex(t => t.Name)
                         .HasDatabaseName("IX_TodoItems_Name");
+
+            modelBuilder.Entity<TodoItemEntity>()
+                        .ToTable(t => t.HasCheckConstraint("CK_TodoItems_Priority", "[Priority] BETWEEN 1 AND 3"));
         }
     }
 }

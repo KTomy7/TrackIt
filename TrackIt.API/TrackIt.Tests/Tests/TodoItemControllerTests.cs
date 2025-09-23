@@ -10,13 +10,13 @@ namespace TrackIt.Tests.Tests
     public class TodoItemControllerTests
     {
         private Mock<ITodoItemService> _mockTodoItemService;
-        private TodoItemController _controller;
+        private TodoItemController _todoItemController;
 
         [TestInitialize]
         public void Setup()
         {
             _mockTodoItemService = new Mock<ITodoItemService>();
-            _controller = new TodoItemController(_mockTodoItemService.Object);
+            _todoItemController = new TodoItemController(_mockTodoItemService.Object);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace TrackIt.Tests.Tests
             _mockTodoItemService.Setup(s => s.GetPendingTodoItemsAsync()).ReturnsAsync([]);
 
             // ACT
-            var result = await _controller.GetPendingTodoItems();
+            var result = await _todoItemController.GetPendingTodoItems();
 
             // ASSERT
             Assert.IsInstanceOfType(result.Result, typeof(NoContentResult));
@@ -40,7 +40,7 @@ namespace TrackIt.Tests.Tests
             _mockTodoItemService.Setup(s => s.GetPendingTodoItemsAsync()).ReturnsAsync(items);
 
             // ACT
-            var result = await _controller.GetPendingTodoItems();
+            var result = await _todoItemController.GetPendingTodoItems();
 
             // ASSERT
             var okResult = result.Result as OkObjectResult;
@@ -56,7 +56,7 @@ namespace TrackIt.Tests.Tests
             _mockTodoItemService.Setup(s => s.CreateTodoItemAsync(dto)).Returns(Task.CompletedTask);
 
             // ACT
-            var result = await _controller.CreateTodoItem(dto);
+            var result = await _todoItemController.CreateTodoItem(dto);
 
             // ASSERT
             Assert.IsInstanceOfType(result, typeof(OkResult));
@@ -71,7 +71,7 @@ namespace TrackIt.Tests.Tests
             _mockTodoItemService.Setup(s => s.MarkAsDone(id)).ReturnsAsync(false);
 
             // ACT
-            var result = await _controller.MarkAsDone(id);
+            var result = await _todoItemController.MarkAsDone(id);
 
             // ASSERT
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
@@ -85,10 +85,10 @@ namespace TrackIt.Tests.Tests
             _mockTodoItemService.Setup(s => s.MarkAsDone(id)).ReturnsAsync(true);
 
             // ACT
-            var result = await _controller.MarkAsDone(id);
+            var result = await _todoItemController.MarkAsDone(id);
 
             // ASSERT
-            Assert.IsInstanceOfType(result, typeof(NoContentResult));
+            Assert.IsInstanceOfType(result, typeof(OkResult));
         }
     }
 }

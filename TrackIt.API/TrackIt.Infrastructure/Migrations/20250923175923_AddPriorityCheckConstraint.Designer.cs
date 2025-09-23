@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackIt.Infrastructure.DataAccess;
 
@@ -11,9 +12,11 @@ using TrackIt.Infrastructure.DataAccess;
 namespace TrackIt.Infrastructure.Migrations
 {
     [DbContext(typeof(TrackItDbContext))]
-    partial class TrackItDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250923175923_AddPriorityCheckConstraint")]
+    partial class AddPriorityCheckConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
