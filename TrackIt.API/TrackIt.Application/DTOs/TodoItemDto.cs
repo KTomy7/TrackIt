@@ -1,4 +1,6 @@
-﻿namespace TrackIt.Application.DTOs
+﻿using TrackIt.Domain.Enums;
+
+namespace TrackIt.Application.DTOs
 {
     public class TodoItemDto
     {
@@ -8,7 +10,7 @@
 
         public string? Description { get; set; }
 
-        public int Priority { get; set; }
+        public PriorityEnum Priority { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

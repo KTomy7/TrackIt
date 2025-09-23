@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using TrackIt.API.Controllers;
 using TrackIt.Application.DTOs;
@@ -10,13 +11,15 @@ namespace TrackIt.Tests.Tests
     public class TodoItemControllerTests
     {
         private Mock<ITodoItemService> _mockTodoItemService;
+        private Mock<ILogger<TodoItemController>> _mockLogger;
         private TodoItemController _todoItemController;
 
         [TestInitialize]
         public void Setup()
         {
             _mockTodoItemService = new Mock<ITodoItemService>();
-            _todoItemController = new TodoItemController(_mockTodoItemService.Object);
+            _mockLogger = new Mock<ILogger<TodoItemController>>();
+            _todoItemController = new TodoItemController(_mockTodoItemService.Object, _mockLogger.Object);
         }
 
         [TestMethod]
