@@ -1,0 +1,55 @@
+﻿<Window x:Class="TrackIt.ClientApp.UI.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:TrackIt.ClientApp.UI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
+        Title="TrackIt" Height="500" Width="900" ResizeMode="NoResize"
+        materialDesign:ColorZoneAssist.Mode="PrimaryMid">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Add Task Section -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Top" Grid.Row="0">
+            <TextBox Width="180" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Task Name" Text="{Binding NewTodoItemName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Width="220" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Description" Text="{Binding NewTodoItemDescription, UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox Width="120" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Priority" ItemsSource="{Binding PriorityValues}" SelectedItem="{Binding NewTodoItemPriority, Mode=TwoWay}">
+            </ComboBox>
+            <Button Content="Create" Command="{Binding CreateTodoItemCommand}" Style="{StaticResource MaterialDesignRaisedButton}" />
+        </StackPanel>
+
+        <!-- Todo List Section -->
+        <ListBox Grid.Row="1" ItemsSource="{Binding TodoItems}" Margin="0,0,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,0,8" Padding="12" Background="{DynamicResource MaterialDesignPaper}">
+                        <DockPanel>
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Width="600">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
+                                <TextBlock Text="{Binding Description}" FontStyle="Italic" Foreground="Gray" />
+                                <TextBlock FontSize="12" >
+                                    <Run Text="Priority: " />
+                                    <Run Text="{Binding Priority}" />
+                                </TextBlock>
+                                <TextBlock FontSize="12" >
+                                    <Run Text="Created: " />
+                                    <Run Text="{Binding CreatedAt, StringFormat=yyyy-MM-dd HH:mm}" />
+                                </TextBlock>
+                            </StackPanel>
+                            <Button Content="Mark as Done" Command="{Binding DataContext.MarkAsDoneCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Id}" Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0" />
+                        </DockPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
