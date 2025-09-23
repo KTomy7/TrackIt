@@ -14,6 +14,13 @@ namespace TrackIt.ClientApp.UI.ViewModels
         private readonly ITodoItemService _todoItemService;
         public ObservableCollection<TodoItem> TodoItems { get; } = [];
 
+        private ObservableCollection<TodoItem> _filteredTodoItems = [];
+        public ObservableCollection<TodoItem> FilteredTodoItems
+        {
+            get => _filteredTodoItems;
+            set { _filteredTodoItems = value; OnPropertyChanged(); }
+        }
+
         private string _newTodoItemName = string.Empty;
         public string NewTodoItemName
         {
@@ -33,6 +40,21 @@ namespace TrackIt.ClientApp.UI.ViewModels
         {
             get => _newTodoItemPriority;
             set { _newTodoItemPriority = value; OnPropertyChanged(); }
+        }
+
+        private string _searchText = string.Empty;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                    ApplyFilter();
+                }
+            }
         }
 
         public static Array PriorityValues => Enum.GetValues(typeof(PriorityEnum));
@@ -56,6 +78,7 @@ namespace TrackIt.ClientApp.UI.ViewModels
             {
                 TodoItems.Add(item);
             }
+            ApplyFilter();
         }
 
         private async Task CreateTodoItemAsync()
@@ -80,6 +103,19 @@ namespace TrackIt.ClientApp.UI.ViewModels
         {
             await _todoItemService.MarkAsDoneAsync(id);
             await GetPendingTodoItemsAsync();
+        }
+
+        private void ApplyFilter()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                FilteredTodoItems = new ObservableCollection<TodoItem>(TodoItems);
+            }
+            else
+            {
+                FilteredTodoItems = new ObservableCollection<TodoItem>(
+                    TodoItems.Where(t => t.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)));
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

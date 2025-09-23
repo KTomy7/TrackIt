@@ -12,23 +12,31 @@
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
+        <TextBox Grid.Row="0" Width="100" Margin="0,0,8,16" HorizontalAlignment="Left"
+            materialDesign:HintAssist.Hint="Search by Name"
+            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
         <!-- Add Task Section -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Top" Grid.Row="0">
-            <TextBox Width="180" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Task Name" Text="{Binding NewTodoItemName, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Width="220" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Description" Text="{Binding NewTodoItemDescription, UpdateSourceTrigger=PropertyChanged}" />
-            <ComboBox Width="120" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Priority" ItemsSource="{Binding PriorityValues}" SelectedItem="{Binding NewTodoItemPriority, Mode=TwoWay}">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Top" Grid.Row="1">
+            <TextBox Width="100" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Task Name" MaxLength="64"
+                     Text="{Binding NewTodoItemName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Width="300" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Description" MaxLength="256"
+                     Text="{Binding NewTodoItemDescription, UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox Width="120" Margin="0,0,8,0" materialDesign:HintAssist.Hint="Priority" 
+                      ItemsSource="{Binding PriorityValues}" SelectedItem="{Binding NewTodoItemPriority, Mode=TwoWay}">
             </ComboBox>
             <Button Content="Create" Command="{Binding CreateTodoItemCommand}" Style="{StaticResource MaterialDesignRaisedButton}" />
         </StackPanel>
 
         <!-- Todo List Section -->
-        <ListBox Grid.Row="1" ItemsSource="{Binding TodoItems}" Margin="0,0,0,0">
+        <ListBox Grid.Row="2" ItemsSource="{Binding FilteredTodoItems}" Margin="0,0,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="0,0,0,8" Padding="12" Background="{DynamicResource MaterialDesignPaper}">
