@@ -2,7 +2,7 @@
 
 namespace TrackIt.Application.DTOs
 {
-    public class TodoItemCreateDto
+    public class CreateTodoItemDto
     {
         public required string Name { get; set; }
 

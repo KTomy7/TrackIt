@@ -5,7 +5,7 @@ namespace TrackIt.ClientApp.Application.Interfaces
     public interface ITodoItemService
     {
         Task<List<TodoItem>> GetPendingTodoItemsAsync();
-        Task CreateTodoItemAsync(TodoItem todoItem);
+        Task CreateTodoItemAsync(CreateTodoItem todoItem);
         Task MarkAsDoneAsync(int id);
     }
 }

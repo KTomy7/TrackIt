@@ -10,7 +10,7 @@ namespace TrackIt.Application.Profiles
         {
             CreateMap<TodoItemEntity, TodoItemDto>();
 
-            CreateMap<TodoItemCreateDto, TodoItemEntity>();
+            CreateMap<CreateTodoItemDto, TodoItemEntity>();
         }
     }
 }

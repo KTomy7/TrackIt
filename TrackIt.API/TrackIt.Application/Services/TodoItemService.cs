@@ -22,7 +22,7 @@ namespace TrackIt.Application.Services
             return _mapper.Map<IEnumerable<TodoItemDto>>(todoItems);
         }
 
-        public async Task CreateTodoItemAsync(TodoItemCreateDto dto)
+        public async Task CreateTodoItemAsync(CreateTodoItemDto dto)
         {
             var todoItem = _mapper.Map<TodoItemEntity>(dto);
             todoItem.IsDone = false;

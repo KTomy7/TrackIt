@@ -55,7 +55,7 @@ namespace TrackIt.Tests.Tests
         public async Task CreateTodoItem_ReturnsOk()
         {
             // ARRANGE
-            var dto = new TodoItemCreateDto() { Name = "Test" };
+            var dto = new CreateTodoItemDto() { Name = "Test" };
             _mockTodoItemService.Setup(s => s.CreateTodoItemAsync(dto)).Returns(Task.CompletedTask);
 
             // ACT

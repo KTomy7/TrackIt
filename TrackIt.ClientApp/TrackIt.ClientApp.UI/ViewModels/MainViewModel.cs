@@ -60,13 +60,12 @@ namespace TrackIt.ClientApp.UI.ViewModels
 
         private async Task CreateTodoItemAsync()
         {
-            var newItem = new TodoItem
+            var newItem = new CreateTodoItem
             {
                 Name = NewTodoItemName,
                 Description = NewTodoItemDescription,
                 Priority = NewTodoItemPriority,
-                CreatedAt = DateTime.Now,
-                IsDone = false
+                CreatedAt = DateTime.Now
             };
 
             await _todoItemService.CreateTodoItemAsync(newItem);

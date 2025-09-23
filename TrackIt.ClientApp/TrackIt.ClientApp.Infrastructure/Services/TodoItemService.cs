@@ -25,7 +25,7 @@ namespace TrackIt.ClientApp.Infrastructure.Services
             return todoItems ?? [];
         }
 
-        public async Task CreateTodoItemAsync(TodoItem todoItem)
+        public async Task CreateTodoItemAsync(CreateTodoItem todoItem)
         {
             var response = await _httpClient.PostAsJsonAsync("api/TodoItem", todoItem);
             response.EnsureSuccessStatusCode();

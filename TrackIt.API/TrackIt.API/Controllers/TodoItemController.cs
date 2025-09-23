@@ -60,7 +60,7 @@ namespace TrackIt.API.Controllers
         /// <param name="todoItemCreateDto">The todo item data to create.</param>
         /// <returns>An appropriate HTTP status code.</returns>
         [HttpPost]
-        public async Task<ActionResult> CreateTodoItem([FromBody] TodoItemCreateDto todoItemCreateDto)
+        public async Task<ActionResult> CreateTodoItem([FromBody] CreateTodoItemDto todoItemCreateDto)
         {
             try
             {
