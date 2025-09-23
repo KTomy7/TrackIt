@@ -1,0 +1,19 @@
+1. Írj egy SQL query-t, amely egy tetszőlegesen választott dátumnál régebbi elvégzetlen feladatok prioritását átállítja 
+High-ra!
+
+UPDATE [TodoItems]
+SET [Priority] = 3
+WHERE [IsDone] = 0 AND [CreatedAt] < '2025-09-23';
+
+2. Készíts egy tárolt eljárást, amely minden éjfélkor az egy hétnél régebbi elvégzetlen feladatok prioritását High-ra 
+állítja!
+
+CREATE PROCEDURE UpdateOldUnfinishedTasks
+AS
+BEGIN
+    UPDATE [TodoItems]
+    SET [Priority] = 3
+    WHERE [IsDone] = 0
+      AND [CreatedAt] < DATEADD(DAY, -7, GETDATE());
+END;
+GO
